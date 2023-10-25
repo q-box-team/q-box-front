@@ -1,0 +1,39 @@
+{
+	"name": "qbox-client",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"prepare": "npm run smui-theme-light",
+		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme"
+	},
+	"type": "module",
+	"dependencies": {
+		"@material/dom": "^14.0.0",
+		"@material/typography": "^14.0.0",
+		"@smui/button": "^7.0.0-beta.15",
+		"@smui/card": "^7.0.0-beta.15",
+		"@smui/data-table": "^7.0.0-beta.15",
+		"@smui/icon-button": "^7.0.0-beta.15",
+		"@smui/layout-grid": "^7.0.0-beta.15",
+		"@smui/linear-progress": "^7.0.0-beta.15",
+		"@smui/textfield": "^7.0.0-beta.15",
+		"@smui/top-app-bar": "^7.0.0-beta.15",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.20.4",
+		"axios": "^1.5.1",
+		"marked": "^9.1.2",
+		"material": "^0.5.3",
+		"smui-theme": "^7.0.0-beta.15",
+		"svelte": "^4.0.5",
+		"svelte-check": "^3.4.3",
+		"svelte-material-ui": "^7.0.0-beta.15",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2"
+	}
+}
