@@ -1,0 +1,32 @@
+name : deploy-prod
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: actions/checkout@v3
+      - uses: bahmutov/npm-install@v1.8.35
+      - run: npm run prepare
+      - run: npm run build
+      - uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.QBOX_PROD_HOST }}
+          username: ${{ secrets.QBOX_PROD_USER }}
+          password: ${{ secrets.QBOX_PROD_PASSWORD }}
+          source: "build/*"
+          target: "app/"
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.QBOX_PROD_HOST }}
+          username: ${{ secrets.QBOX_PROD_USER }}
+          password: ${{ secrets.QBOX_PROD_PASSWORD }}
+          script: |
+            sudo service nginx restart
