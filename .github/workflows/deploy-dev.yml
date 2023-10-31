@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: bahmutov/npm-install@v1.8.35
       - run: npm run prepare
-      - run: npm run build
+      - run: npm run build:dev
       - uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.QBOX_DEV_HOST }}
