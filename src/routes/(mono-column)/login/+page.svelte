@@ -49,7 +49,7 @@
             <div class="option">
                 <div style="display: flex; flex-direction: row; justify-contents: center; align-items: center">
                     <Checkbox/>
-                    <span style="font-weight: 600; padding-top: 5px;">로그인 유지</span>
+                    <span style="padding-top: 5px;">로그인 유지</span>
                 </div>
                 <a href="#" style="color: #ff9e88; font-weight: 600; padding-top: 5px;">비밀번호를 잊으셨나요?</a>
             </div>
@@ -108,7 +108,6 @@
         align-items: flex-start;
     }
     /* node_module/svelte-material-ui/bare.css 에서 .mdc-floating-label{color:#6a76cb} 수정 필요 */
-    /* node_module/svelte-material-ui/bare.css 에서 .mdc-button__ripple{border-radius:28px; border-style:solid;border-color:rgba(0,0,0,0)} */
     *
     :global(.shaped-outlined
       .mdc-notched-outline
