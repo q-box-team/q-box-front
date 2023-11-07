@@ -1,6 +1,6 @@
 <script>
     import axios from "axios";
-    import Header from "./(mono-column)/Header.svelte";
+    import Header from "./Header.svelte";
     axios.defaults.baseURL = import.meta.env.VITE_API_URL;
     axios.defaults.withCredentials = true;
 </script>
