@@ -5,9 +5,10 @@
   export let email;
   export let password;
   export let sendData;
+  export let gotoSignUp;
 </script>
 
-<div class="login-container-wrap flex-child_center">
+<div class="page-container-wrap flex-child_center">
   <div class="login-container">
       <div class="side-image flex-child_center">
           <h2 class="c_wt fnt-wg_600">Q-box</h2>
@@ -27,7 +28,7 @@
                   label="비밀번호"
                   class="shaped-outlined wd_360 hg_60"
                   variant="outlined"/>
-          <div class="option flex-child_between wd_350">
+          <div class="option flex-child_j-between wd_350">
               <div class="flex-child_center"
               style="flex-direction: row; ">
                   <Checkbox/>
@@ -41,7 +42,7 @@
               <Label class="fnt-sz_20 fnt-wg_600">로그인</Label>
           </Button>
           <div class="bd-rd_28 wd_360 ov-fl_hidden" style="margin-top: 2vh; height:60.5px ">
-              <Button color="primary" on:click={sendData}
+              <Button color="primary" on:click={gotoSignUp}
               class="wd_360 hg_60 bd-rd_28"
               variant="outlined">
                   <Label
@@ -54,9 +55,6 @@
 </div>
 
 <style>
-  .login-container-wrap {
-      height: 80vh;
-  }
   .login-container {
       background-color: #fff;
       border-radius: 35px;
@@ -66,13 +64,13 @@
       height: 700px;
       box-shadow:  0px 15px 30px #929292,
            0px -15px 30px #ffffff;
+      overflow: hidden;
   }
   .side-image {
       width: 600px;
       height: 100%;
       background-color: #6a76cb;
-      border-top-left-radius: 35px;
-      border-bottom-left-radius: 35px;
+
   }
   .login-contents {
       width: 500px;
