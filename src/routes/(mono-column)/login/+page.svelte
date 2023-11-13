@@ -24,6 +24,11 @@
             },
         }).then(() => goto("/", {replaceState: true}));
     }
+
+    const gotoSignUp = () => {
+        goto("/signup");
+    }
+
 </script>
 
-<Card email={email} password={password} sendData={sendData} />
+<Card email={email} password={password} sendData={sendData} gotoSignUp={gotoSignUp}/>
