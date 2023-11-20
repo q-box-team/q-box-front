@@ -1,12 +1,10 @@
 <script>
-  import Content1 from "./Content1.svelte";
-  import Content2 from "./Content2.svelte";
-  import Content3 from "./Content3.svelte";
-  import Content4 from "./Content4.svelte";
+  import Content1 from "./contents/Content1.svelte";
+  import Content2 from "./contents/Content2.svelte";
+  import Content3 from "./contents/Content3.svelte";
+  import Content4 from "./contents/Content4.svelte";
   export let step;
   export let slide;
-  $:console.log(step);
-  
 </script>
 
   <div class="flex-child_center">

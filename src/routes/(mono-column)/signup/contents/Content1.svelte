@@ -1,19 +1,20 @@
 <script>
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
+    const authFunction = () => {
+      // alert("이메일을 알맞게 적었습니까?");
+      slide("next");
+    };
     export let step;
     export let slide;
-    const authComplete = () => {
-      console.log(`인증완료`);
-      slide("next");
-
-    };
     $:console.log(step);
+    // 이메일 형식이 맞는지 확인하는 기능
+    // 인증하기 버튼 클릭시 데이터를 요청하고 다음으로 넘어가는 기능
   </script>
-
+  
 
 <div class="side-image flex-child_center">
-    <h4 class="c_wt fnt-wg_600">AUTHENTIFICATION REQUIRED</h4>
+    <h4 class="c_wt fnt-wg_600">이메일 인증</h4>
   </div>
   <div class="contents-wrap flex-child_center">
     <div class="flex-child_center" style="flex:0.22">
@@ -43,18 +44,16 @@
         />
       </svg>
     </div>
-    <div class="flex-child_center" style="flex:0.13">
+    <div style="flex:0.13">
       <span class="c_pri fnt-wg_600 fnt-sz_20 s-pd_20"
-      style="text-align: center;"
-        >We sent verification code to xxxxxxxxx@gmail.com
-        Please check your inbox and enter the code below.</span
+        >본인 학교 소속의 이메일을 넣어주세요</span
       >
     </div>
     <div style="flex:0.10"></div>
     <div class="flex-child_center" style="flex:0.13">
       <Textfield
         value=""
-        label="6-digit code"
+        label="이메일"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
         style="margin-bottom: 30px;"
@@ -63,17 +62,17 @@
     <div style="flex:0.18">
       <Button
         color="primary"
-        on:click={authComplete}
+        on:click={authFunction}
         class="wd_200 bd-rd_28 hg_60"
         style="margin-top: 1vh;"
         variant="raised"
       >
-        <Label class="fnt-sz_20 fnt-wg_600">인증완료</Label>
+        <Label class="fnt-sz_20 fnt-wg_600">인증하기</Label>
       </Button>
     </div>
-    <div class="flex-child_a-start f_row" style="flex:0.18">
-      <span>이메일을 받지 못하셨나요?</span>
-      <a href="#">다시 받기</a>
+    <div class="flex-child_a-start f_row" style="flex:0.18; gap: 10px;">
+      <span>이미 계정이 있으신가요? </span>
+      <a href="/login">로그인</a>
     </div>
     <!-- <div style="flex:0.06"></div> -->
   </div>
@@ -82,6 +81,7 @@
     .side-image {
       background-color: #6c76c5;
       width: 100%;
+      
     }
     .contents-wrap {
       width: 100%;

@@ -1,6 +1,4 @@
 <script>
-  import { onMount } from "svelte";
-
   import "../../../global.css";
   import Card from "./Card.svelte";
   const process = ["emailAuth", "authComplete", "serAgree", "signIn"];
@@ -13,8 +11,6 @@
   $: prevDisabled = currentSlidePosition <= 0;
 
   function slide(direction) {
-    // console.log(`slider.clientWidth: `, slider.clientWidth);
-    // console.log(`slider.scrollWidth: `, slider.scrollWidth);
     const moveAmount = slider.clientWidth * 1;
     if (
       direction === "next" &&
@@ -24,7 +20,6 @@
     } else if (direction === "prev" && currentSlidePosition > 0) {
       currentSlidePosition -= moveAmount;
     }
-    // const centerPosition = currentSlidePosition - slider.clientWidth;
     const centerPosition = slider.clientWidth * currentSlidePosition / 600;
     slider.scrollTo({ left: centerPosition, behavior: "smooth" });
   }
@@ -49,7 +44,7 @@
     width: 600px;
     height: 800px;
     flex-direction: row;
-    overflow-x: hidden;
+    overflow: hidden;
   }
   .shadow {
     width: 600px;

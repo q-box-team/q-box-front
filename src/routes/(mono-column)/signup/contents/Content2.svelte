@@ -1,19 +1,22 @@
 <script>
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
-    const authFunction = () => {
-      // alert("이메일을 알맞게 적었습니까?");
-      slide("next");
-    };
     export let step;
     export let slide;
-    $:console.log(step);
+    const authComplete = () => {
+      console.log(`인증완료`);
+      slide("next");
 
+    };
+    $:console.log(step);
+    // 인증코드 감별 기능
+    // 감별 완료시, 다음으로 넘어갈 수 있는 기능
+    // 인증코드 다시 받기 위한 sendRequest
   </script>
-  
+
 
 <div class="side-image flex-child_center">
-    <h4 class="c_wt fnt-wg_600">EMAIL AUTHENTIFICATION</h4>
+    <h4 class="c_wt fnt-wg_600">이메일 인증 코드</h4>
   </div>
   <div class="contents-wrap flex-child_center">
     <div class="flex-child_center" style="flex:0.22">
@@ -43,16 +46,18 @@
         />
       </svg>
     </div>
-    <div style="flex:0.13">
+    <div class="flex-child_center" style="flex:0.13">
       <span class="c_pri fnt-wg_600 fnt-sz_20 s-pd_20"
-        >본인 학교 소속의 이메일을 넣어주세요</span
+      style="text-align: center;"
+        >xxxxxxxxx@gmail.com 으로 <br/>회원가입 이메일 인증코드를 전달하였습니다.<br/>
+        5분 이내에 이메일에 있는 인증코드를 입력해주세요.</span
       >
     </div>
     <div style="flex:0.10"></div>
     <div class="flex-child_center" style="flex:0.13">
       <Textfield
         value=""
-        label="이메일"
+        label="6-digit code"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
         style="margin-bottom: 30px;"
@@ -61,17 +66,17 @@
     <div style="flex:0.18">
       <Button
         color="primary"
-        on:click={authFunction}
+        on:click={authComplete}
         class="wd_200 bd-rd_28 hg_60"
         style="margin-top: 1vh;"
         variant="raised"
       >
-        <Label class="fnt-sz_20 fnt-wg_600">인증하기</Label>
+        <Label class="fnt-sz_20 fnt-wg_600">인증완료</Label>
       </Button>
     </div>
-    <div class="flex-child_a-start f_row" style="flex:0.18">
-      <span>이미 계정이 있으신가요? </span>
-      <a href="#">로그인</a>
+    <div class="flex-child_a-start f_row" style="flex:0.18; gap: 10px">
+      <span>이메일을 받지 못하셨나요?</span>
+      <a href="#">다시 받기</a>
     </div>
     <!-- <div style="flex:0.06"></div> -->
   </div>
@@ -80,7 +85,6 @@
     .side-image {
       background-color: #6c76c5;
       width: 100%;
-      
     }
     .contents-wrap {
       width: 100%;
