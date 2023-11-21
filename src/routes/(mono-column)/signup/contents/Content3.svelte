@@ -15,9 +15,9 @@
 <div class="side-image flex-child_center">
   <h4 class="c_wt fnt-wg_600">Q-box 서비스 이용 동의</h4>
 </div>
-<div class="contents-wrap flex-child_j-start">
+<div class="contents-wrap flex-child_j-start_a-center">
   <div
-    class="flex-child_j-start f_column scroll"
+    class="flex-child_j-start_a-center f_column scroll"
     style="display: relative; flex:0.85; overflow-y:auto;"
   >
     <span

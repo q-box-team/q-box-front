@@ -28,7 +28,7 @@
                   label="비밀번호"
                   class="shaped-outlined wd_360 hg_60"
                   variant="outlined"/>
-          <div class="option flex-child_j-between wd_350">
+          <div class="option flex-child_j-between_a-center wd_350">
               <div class="flex-child_center"
               style="flex-direction: row; ">
                   <Checkbox/>

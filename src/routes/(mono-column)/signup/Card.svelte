@@ -8,7 +8,7 @@
 </script>
 
   <div class="flex-child_center">
-    <div class="signup-container flex-child_j-start">
+    <div class="signup-container flex-child_j-start_a-center">
       {#if step === "emailAuth"}
         <Content1 step={step} slide={slide}/>
       {:else if step === "authComplete"}

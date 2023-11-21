@@ -3,6 +3,7 @@
 /* element selector */
 body {
   font-family: "Noto Sans KR", sans-serif;
+  margin: 0px;
 }
 
 a:link {
@@ -70,6 +71,9 @@ a:visited {
 }
 .wd_100 {
   width: 100px;
+}
+.wd_100p {
+  width: 100%;
 }
 .wd_150 {
   width: 150px;
@@ -147,30 +151,35 @@ a:visited {
   justify-content: center;
   align-items: center;
 }
-.flex-child_j-start {
+.flex-child_j-start_a-center {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.flex-child_j-end {
+.flex-child_j-end_a-center {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.flex-child_j-between {
+.flex-child_j-between_a-center {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.flex-child_a-start {
+.flex-child_j-center_a-start {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
-.flex-child_a-end {
+.flex-child_j-center_a-end {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+}
+.flex-child_j-fstart_a-fstart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .f_row {
   flex-direction: row;

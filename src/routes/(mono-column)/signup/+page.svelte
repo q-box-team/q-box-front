@@ -29,7 +29,7 @@
 
 <div class="page-container-wrap flex-child_center">
   <div class="flex-child_center shadow">
-    <div class="signup-container flex-child_j-start" bind:this={slider}>
+    <div class="signup-container flex-child_j-start_a-center" bind:this={slider}>
       {#each process as step}
         <Card {step} slide={slide} />
       {/each}

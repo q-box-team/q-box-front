@@ -70,7 +70,7 @@
         <Label class="fnt-sz_20 fnt-wg_600">인증하기</Label>
       </Button>
     </div>
-    <div class="flex-child_a-start f_row" style="flex:0.18; gap: 10px;">
+    <div class="flex-child_j-center_a-start f_row" style="flex:0.18; gap: 10px;">
       <span>이미 계정이 있으신가요? </span>
       <a href="/login">로그인</a>
     </div>

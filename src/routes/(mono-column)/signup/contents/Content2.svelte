@@ -74,7 +74,7 @@
         <Label class="fnt-sz_20 fnt-wg_600">인증완료</Label>
       </Button>
     </div>
-    <div class="flex-child_a-start f_row" style="flex:0.18; gap: 10px">
+    <div class="flex-child_j-center_a-start f_row" style="flex:0.18; gap: 10px">
       <span>이메일을 받지 못하셨나요?</span>
       <a href="#">다시 받기</a>
     </div>
