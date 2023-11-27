@@ -30,7 +30,6 @@
     "게임공학과",
   ];
 
-
   // 전체 input이 제대로 작성되어있는지 예외처리 기능
   // 인증완료 버튼 클릭시 sendRequest
   const sendSignUpData = (data) => {
@@ -60,14 +59,12 @@
   <h4 class="c_wt fnt-wg_600">회원가입</h4>
 </div>
 <div class="contents-wrap flex-child_center">
-  <div
-    style="width: 100%; flex: 0.85; padding-top: 30px;"
-  >
+  <div style="width: 100%; flex: 0.85; padding-top: 30px;">
     <div class="flex-child_center">
       <Textfield
-        id="identification"
+        id="nickname"
         value=""
-        label="아이디"
+        label="닉네임"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
         style="margin-bottom: 30px;"
@@ -78,16 +75,6 @@
         id="password"
         value=""
         label="비밀번호"
-        class="shaped-outlined wd_360 hg_60"
-        variant="outlined"
-        style="margin-bottom: 30px;"
-      />
-    </div>
-    <div class="flex-child_center">
-      <Textfield
-        id="nickname"
-        value=""
-        label="닉네임"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
         style="margin-bottom: 30px;"
@@ -116,23 +103,6 @@
     <div class="flex-child_center f_column">
       <Select
         class="shaped-outlined wd_360 hg_60"
-        variant="outlined"
-        bind:value={departId}
-        label="학과"
-      >
-        <Option value="학과를 선택해주세요">학과를 선택해주세요</Option>
-        {#each schools as school}
-          <Option value={school}>{school}</Option>
-        {/each}
-        <svelte:fragment slot="helperText"
-          >현재 다니는 학교를 선택해주세요</svelte:fragment
-        >
-      </Select>
-    </div>
-    <div class="flex-child_center f_column">
-      <Select
-        class="shaped-outlined wd_360 hg_60"
-        style="margin-top: 10px;"
         variant="outlined"
         bind:value={departId}
         label="학과"

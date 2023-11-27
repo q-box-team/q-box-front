@@ -1,13 +1,17 @@
 <script>
+    import QuestionList from "../common/QuestionList.svelte";
+    import Subject from "../common/Subject.svelte";
+    import Callendar from "../common/Callendar.svelte";
+    import TopPerformer from "../common/TopPerformer.svelte";
 </script>
 
-<div class="flex-child_j-fstart_a-fstart f_row" style="width: 100%;">
-    <div style="flex: 0.75">
-        <div style="width: 100%; height: 200px; background-color: white;">Card1</div>
-        <div style="width: 100%; height: calc(100vh - 200px - 63px); border: 1px solid black;">Card2</div>
+<div class="flex-child_j-start_a-start f_row" style="width: 100%;">
+    <div class="flex-child_j-start_a-start f_column" style="flex: 0.75; height: calc(100vh - 60px);">
+        <div class="flex-child_center wd_100p" style="flex: 0.25"><Subject/></div>
+        <div class="flex-child_center wd_100p" style="flex: 0.75"><QuestionList/></div>
     </div>
-    <div class="flex-child_j-start_a-center f_column" style="flex: 0.25; height: calc(100vh - 60px);">
-        <div style="width: 100%; border: 1px solid black; flex: 0.5;">Card3</div>
-        <div style="width: 100%; border: 1px solid black; flex: 0.5;">Card4</div>
+    <div class="flex-child_j-start_a-center f_column" style="flex: 0.24; height: calc(100vh - 60px);">
+        <div class="wd_100p bd-1_black" style="flex: 0.5;"><Callendar/></div>
+        <div class="wd_100p bd-1_black" style="flex: 0.5;"><TopPerformer/></div>
     </div>
 </div>
