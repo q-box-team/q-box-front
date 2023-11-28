@@ -34,7 +34,7 @@
       <div class="flex-child_j-between_a-center f_row wd_100p">
         <img src={question.img} class="wd_50 hg_50 bd-rd_50" alt="" />
         <div><b>{question.nickname}</b></div>
-        <div class="wd_55 bg-c_pri" style="border-radius: 50px;">
+        <div class="wd_55 bg-c_pri" style="border-radius: 50px; box-shadow: 0px 0px 17px #9d9d9d">
             <IconButton style="width: 55px; height: 55px;">
                 <div class="material-icons" style="color: white;">send</div>
             </IconButton>
