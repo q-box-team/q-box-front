@@ -132,6 +132,9 @@ a:visited {
 .hg_60 {
   height: 60px;
 }
+.hg_65 {
+  height: 65px;
+}
 .hg_70 {
   height: 70px;
 }
@@ -147,14 +150,23 @@ a:visited {
 .hg_100p {
   height: 100%;
 }
+.hg_100vh {
+  height: 100vh;
+}
 .hg_110 {
   height: 110px;
 }
 .hg_120 {
   height: 120px;
 }
+.hg_200 {
+  height: 200px;
+}
 .hg_300 {
   height: 300px;
+}
+.hg_600 {
+  height: 600px;
 }
 /* height */
 
@@ -233,6 +245,9 @@ a:visited {
 }
 .bd-1_black {
   border: 1px solid black;
+}
+.bd-1_sf {
+  border: 1px solid #f0f2f7;
 }
 /* overflow */
 .ov-fl_hidden {
