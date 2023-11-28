@@ -4,13 +4,13 @@
 
 <div
   class="bg-c_wt wd_100p flex-child_j-start_a-start blink_disable"
-  style="height: calc(100% - 60px); margin-bottom: 20px; margin-left: 20px; border-radius: 25px; padding: 20px; box-shadow: 0px 8px 13px #9d9d9d, 0px 25px #f0f2f7;"
+  style="height: calc(100% - 60px); margin-bottom: 20px; margin: 0px 20px; border-radius: 25px; padding: 20px; box-shadow: 0px 8px 13px #9d9d9d, 0px 25px #f0f2f7;"
 >
   <div
     class="flex-child_j-start_a-start f_column"
     style="flex: 0.2; padding-right: 20px;"
   >
-    <div class="blick_disable fnt-sz_30" style="margin-bottom: 20px;">프로그래밍</div>
+    <div class="blick_disable fnt-sz_30" style="margin-bottom: 20px;"><b>프로그래밍</b></div>
     <div class="flex-child_j-start_a-start f_column">
       <div>과목코드: ACS30010</div>
       <div>과목구분: 전필</div>

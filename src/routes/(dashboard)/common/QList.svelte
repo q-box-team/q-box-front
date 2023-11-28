@@ -53,9 +53,10 @@
     class="flex-child_j-between_a-center"
     style="flex: 0.2; width: 100%; margin-bottom: 20px;"
   >
-    <div class="fnt-sz_25 blink_disable">Question</div>
+    <div class="fnt-sz_25 blink_disable"><b>Question</b></div>
     <a
       class="blink_disable"
+      href="#"
       style="color: black; text-decoration: underline; cursor: pointer;"
       >더보기</a
     >
@@ -71,10 +72,11 @@
       >
         <img
           src={question.img}
+          alt=""
           class="wd_50 hg_50 bd-rd_50"
           style="flex: 0.05;"
         />
-        <div style="flex: 0.15">{question.nickname}</div>
+        <div style="flex: 0.15"><b>{question.nickname}</b></div>
         <div style="flex: 0.75">{question.detail}</div>
         <div
           class="flex-child_center"
