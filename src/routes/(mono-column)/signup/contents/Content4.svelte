@@ -18,16 +18,6 @@
   let departures = [
     "경영학과",
     "컴퓨터공학과",
-    "소프트웨어공학과",
-    "에너지전기공학과",
-    "인공지능벤처과",
-    "게임공학과",
-    "경영학과",
-    "컴퓨터공학과",
-    "소프트웨어공학과",
-    "에너지전기공학과",
-    "인공지능벤처과",
-    "게임공학과",
   ];
 
   // 전체 input이 제대로 작성되어있는지 예외처리 기능
@@ -107,7 +97,6 @@
         bind:value={departId}
         label="학과"
       >
-        <Option value="학과를 선택해주세요">학과를 선택해주세요</Option>
         {#each departures as departure}
           <Option value={departure}>{departure}</Option>
         {/each}
