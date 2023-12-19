@@ -1,5 +1,4 @@
 <script>
-  import "../../../global.css";
   import Card from "./Card.svelte";
   const process = ["emailAuth", "authComplete", "serAgree", "signIn"];
 
@@ -20,18 +19,57 @@
     } else if (direction === "prev" && currentSlidePosition > 0) {
       currentSlidePosition -= moveAmount;
     }
-    const centerPosition = slider.clientWidth * currentSlidePosition / 600;
+    const centerPosition = (slider.clientWidth * currentSlidePosition) / 600;
     slider.scrollTo({ left: centerPosition, behavior: "smooth" });
   }
 
-  $: console.log(`currentSlidePosition: `, currentSlidePosition);
+  const emailAuth = async (email) => {
+    const requestData = {
+      email,
+    };
+    if (validateEmail(email)) {
+      alert("이메일 형식이 올바릅니다.");
+      await fetch("https://dev.q-box.site/emails", {
+        method: "post",
+        body: JSON.stringify(requestData),
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }).then(async (response) => {
+        if (Response.status >= 200 && Response.status < 300) {
+          slide("next")
+          return response.json();
+        } else {
+          const errData = await response.json();
+          console.log(errData);
+          throw new Error("Something went wrong (server side)");
+        }
+      });
+    } else {
+      alert("이메일 형식이 올바르지 않습니다.");
+    }
+  };
+
+  // 이메일 체크
+  const validateEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
 </script>
 
 <div class="page-container-wrap flex-child_center">
   <div class="flex-child_center shadow">
-    <div class="signup-container flex-child_j-start_a-center" bind:this={slider}>
+    <div
+      class="signup-container flex-child_j-start_a-center"
+      bind:this={slider}
+    >
       {#each process as step}
-        <Card {step} slide={slide} />
+        {#if step === "emailAuth"}
+          <Card {step} {slide} {emailAuth} />
+        {:else}
+          <Card {step} {slide} />
+        {/if}
       {/each}
     </div>
   </div>
@@ -51,6 +89,8 @@
     height: 684px;
     border-radius: 35px;
     overflow: hidden;
-    box-shadow: 0px 15px 30px #929292, 0px -15px 30px #ffffff;
+    box-shadow:
+      0px 15px 30px #929292,
+      0px -15px 30px #ffffff;
   }
 </style>

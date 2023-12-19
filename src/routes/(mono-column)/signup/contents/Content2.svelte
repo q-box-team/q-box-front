@@ -1,14 +1,11 @@
 <script>
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
-    export let step;
     export let slide;
     const authComplete = () => {
       console.log(`인증완료`);
       slide("next");
-
     };
-    $:console.log(step);
     // 인증코드 감별 기능
     // 감별 완료시, 다음으로 넘어갈 수 있는 기능
     // 인증코드 다시 받기 위한 sendRequest

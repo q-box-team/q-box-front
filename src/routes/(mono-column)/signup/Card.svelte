@@ -5,12 +5,13 @@
   import Content4 from "./contents/Content4.svelte";
   export let step;
   export let slide;
+  export let emailAuth;
 </script>
 
   <div class="flex-child_center">
     <div class="signup-container flex-child_j-start_a-center">
       {#if step === "emailAuth"}
-        <Content1 step={step} slide={slide}/>
+        <Content1 emailAuth={emailAuth}/>
       {:else if step === "authComplete"}
         <Content2 step={step} slide={slide}/>
       {:else if step === "serAgree"}

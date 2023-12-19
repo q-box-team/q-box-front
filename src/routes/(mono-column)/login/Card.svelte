@@ -4,7 +4,7 @@
   import Button, {Label} from "@smui/button";
   export let email;
   export let password;
-  export let sendData;
+  export let gotoLogin;
   export let gotoSignUp;
 </script>
 
@@ -36,7 +36,7 @@
               </div>
               <a href="#">비밀번호를 잊으셨나요?</a>
           </div>
-          <Button color="primary" on:click={sendData}
+          <Button color="primary" on:click={gotoLogin}
           class="wd_360 bd-rd_28 hg_60"
           style="margin-top: 1vh;" variant="raised">
               <Label class="fnt-sz_20 fnt-wg_600">로그인</Label>
