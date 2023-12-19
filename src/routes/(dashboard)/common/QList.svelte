@@ -62,7 +62,7 @@
     <div class="fnt-sz_25 blink_disable"><b>Question</b></div>
     <a
       class="blink_disable"
-      href="#"
+      href="/questionlist"
       style="color: black; text-decoration: underline; cursor: pointer;"
       >더보기</a
     >

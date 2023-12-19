@@ -168,6 +168,9 @@ a:visited {
 .hg_600 {
   height: 600px;
 }
+.hg_950 {
+  height: 950px;
+}
 /* height */
 
 /* padding */
@@ -216,6 +219,11 @@ a:visited {
   justify-content: flex-start;
   align-items: flex-start;
 }
+.flex-child_j-start_a-end {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
 .f_row {
   flex-direction: row;
 }
@@ -227,6 +235,9 @@ a:visited {
 /* border */
 .bd-rd_15 {
   border-radius: 15px;
+}
+.bd-rd_25 {
+  border-radius: 25px;
 }
 .bd-rd_28 {
   border-radius: 28px;
