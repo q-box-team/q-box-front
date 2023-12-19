@@ -1,48 +1,73 @@
 <script>
+  import Card from "./Card.svelte";
   import { onMount } from "svelte";
   import Vditor from "vditor";
-
+  let data;
+  let vditor;
+  let value = "제목을 입력해주세요";
+  const csrfToken =
+    "zPox5PNJuP-0KY_X8hUjUf2blcJMl6w222IM46_Uv2jVJN_kqs4CgMR-j8iZHbvmljgXZ8iquKN9pc0buAM908zlhlnjR-fV";
+  $: console.log(data);
   onMount(() => {
-    const vditor = new Vditor("vditor-container", {
+    vditor = new Vditor("vditor-container", {
       theme: "dark2",
-      minHeight: 630,
+      height: 850,
       lang: "ko_KR",
       mode: "sv",
-      width: 1265,
+      width: 1600,
       placeholder: "질문 내용을 입력해주세요",
       isPreview: true,
       isOpen: true,
+      outline: true,
       getValue: () => {
-        console.log('hi');
+        console.log("hi");
       },
+      comment: scroll,
       upload: {
-        // 파일 업로드 성공 시 실행되는 콜백 함수
-        success: (editorElement, responseText) => {
-          // 여기에 성공 시 수행할 동작을 작성
-          return alert("성공");
+        url: "", // 서버의 파일 업로드 API URL
+        success: (editor, msg) => {
+          console.log("업로드 성공:", msg);
         },
-
-        // 파일 업로드 실패 시 실행되는 콜백 함수
-        error: (responseText) => {
-          // 여기에 실패 시 수행할 동작을 작성
-          return alert("실패");
+        error: (msg) => {
+          console.error("업로드 실패:", msg);
         },
-
-        // 파일 업로드 응답 데이터 포맷 변환 시 실행되는 콜백 함수
         format: (files, responseText) => {
-          // 여기에 포맷 변환 시 수행할 동작을 작성
-          // files는 업로드한 파일들의 배열, responseText는 서버 응답 텍스트
-          // 변환된 결과를 반환
-          return transformedResponseText;
+          // 서버 응답을 필요에 따라 가공하는 부분
+          // 예: responseText에서 파일 URL 추출하여 반환
+          const responseData = JSON.parse(responseText);
+          return responseData.data.url;
         },
       },
     });
   });
+
+  const serverButtonHandler = () => {
+    const markdownData = vditor.getValue();
+    data = JSON.stringify(markdownData);
+    console.log(data);
+    fetch("https://q-box.site/questions", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: {
+        title: "title",
+        content: data,
+        question: 5,
+        "lecture.code": 1,
+        "lecture.departId": 2,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // 서버 응답 처리
+        console.log("서버 응답:", data);
+      })
+      .catch((error) => {
+        console.error("에러 발생:", error);
+      });
+  };
 </script>
 
-<div style="padding: 0px 20px">
-  <div id="vditor-container" />
-</div>
-
-<style>
-</style>
+<Card  value={value} data={data} sendData={serverButtonHandler}/>
