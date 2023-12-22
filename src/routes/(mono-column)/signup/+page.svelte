@@ -25,11 +25,11 @@
 
   const emailAuth = async (email) => {
     const requestData = {
-      email,
+      email: email,
     };
     if (validateEmail(email)) {
       alert("이메일 형식이 올바릅니다.");
-      await fetch("https://dev.qbox.site/api/emails", {
+      await fetch("https://dev.q-box.site/api/emails", {
         method: "post",
         body: JSON.stringify(requestData),
         header: {
@@ -50,6 +50,33 @@
     }
   };
 
+  const backToEmailAuth = async () => {
+    slide("prev");
+  };
+
+  const authCodeVerification = async (code) => {
+    const requestData = {
+      key: code,
+    };
+    await fetch("https://dev.q-box.site/api/emails", {
+        method: "post",
+        body: JSON.stringify(requestData),
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }).then(async (response) => {
+        if (Response.status >= 200 && Response.status < 300) {
+          console.log(`인증완료`);
+          slide("next")
+          return response.json();
+        } else {
+          const errData = await response.json();
+          console.log(errData);
+          throw new Error("Something went wrong (server side)");
+        }
+      });
+    };
+
   // 이메일 체크
   const validateEmail = (email) => {
     const re =
@@ -67,8 +94,8 @@
       {#each process as step}
         {#if step === "emailAuth"}
           <Card {step} {slide} {emailAuth} />
-        {:else}
-          <Card {step} {slide} />
+        {:else if step === "authComplete"}
+          <Card {step} {slide} {authCodeVerification} {backToEmailAuth}/>
         {/if}
       {/each}
     </div>

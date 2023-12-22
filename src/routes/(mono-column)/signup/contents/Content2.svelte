@@ -1,11 +1,8 @@
 <script>
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
-    export let slide;
-    const authComplete = () => {
-      console.log(`인증완료`);
-      slide("next");
-    };
+    export let authCodeVerification;
+    export let backToEmailAuth;
     // 인증코드 감별 기능
     // 감별 완료시, 다음으로 넘어갈 수 있는 기능
     // 인증코드 다시 받기 위한 sendRequest
@@ -63,7 +60,7 @@
     <div style="flex:0.18">
       <Button
         color="primary"
-        on:click={authComplete}
+        on:click={authCodeVerification}
         class="wd_200 bd-rd_28 hg_60"
         style="margin-top: 1vh;"
         variant="raised"
