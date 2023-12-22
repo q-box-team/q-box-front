@@ -2,7 +2,11 @@
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
     export let authCodeVerification;
-    export let backToEmailAuth;
+    export let slide;
+    export let userEmail;
+    const backToEmailAuth = () => {
+      slide.prev();
+    };
     // 인증코드 감별 기능
     // 감별 완료시, 다음으로 넘어갈 수 있는 기능
     // 인증코드 다시 받기 위한 sendRequest
@@ -43,7 +47,7 @@
     <div class="flex-child_center" style="flex:0.13">
       <span class="c_pri fnt-wg_600 fnt-sz_20 s-pd_20"
       style="text-align: center;"
-        >xxxxxxxxx@gmail.com 으로 <br/>회원가입 이메일 인증코드를 전달하였습니다.<br/>
+        >{userEmail} 으로 <br/>회원가입 이메일 인증코드를 전달하였습니다.<br/>
         5분 이내에 이메일에 있는 인증코드를 입력해주세요.</span
       >
     </div>

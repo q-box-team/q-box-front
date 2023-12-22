@@ -1,7 +1,7 @@
 <script>
   import Card from "./Card.svelte";
   const process = ["emailAuth", "authComplete", "serAgree", "signIn"];
-
+  let userEmail;
   let slider;
   let currentSlidePosition = 0;
   $: nextDisabled = slider
@@ -24,6 +24,7 @@
   }
 
   const emailAuth = async (email) => {
+    userEmail = email;
     const requestData = {
       email: email,
     };
@@ -37,6 +38,9 @@
         },
       }).then(async (response) => {
         if (Response.status >= 200 && Response.status < 300) {
+
+
+
           slide("next")
           return response.json();
         } else {
@@ -50,10 +54,6 @@
     }
   };
 
-  const backToEmailAuth = async () => {
-    slide("prev");
-  };
-
   const authCodeVerification = async (code) => {
     const requestData = {
       key: code,
@@ -62,7 +62,7 @@
         method: "post",
         body: JSON.stringify(requestData),
         header: {
-          "Content-Type": "application/json;charset=UTF-8",
+          "Content-Type": "application/json",
         },
       }).then(async (response) => {
         if (Response.status >= 200 && Response.status < 300) {
@@ -95,7 +95,10 @@
         {#if step === "emailAuth"}
           <Card {step} {slide} {emailAuth} />
         {:else if step === "authComplete"}
-          <Card {step} {slide} {authCodeVerification} {backToEmailAuth}/>
+          <Card {step} {slide} {authCodeVerification} {userEmail}/>
+        {:else}
+          <Card {step} {slide} />
+
         {/if}
       {/each}
     </div>
