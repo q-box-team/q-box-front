@@ -9,7 +9,7 @@
     : false;
   $: prevDisabled = currentSlidePosition <= 0;
 
-  function slide(direction) {
+  const slide = (direction) => {
     const moveAmount = slider.clientWidth * 1;
     if (
       direction === "next" &&
@@ -29,7 +29,7 @@
     };
     if (validateEmail(email)) {
       alert("이메일 형식이 올바릅니다.");
-      await fetch("https://dev.q-box.site/emails", {
+      await fetch("https://dev.qbox.site/api/emails", {
         method: "post",
         body: JSON.stringify(requestData),
         header: {

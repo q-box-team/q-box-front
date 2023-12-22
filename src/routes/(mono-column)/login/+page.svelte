@@ -31,7 +31,6 @@
     const gotoLogin = () => {
         goto("/main");
     };
-
 </script>
 
 <Card email={email} password={password} gotoLogin={gotoLogin} gotoSignUp={gotoSignUp}/>
