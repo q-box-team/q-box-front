@@ -36,9 +36,10 @@
       body: JSON.stringify(requestData)
     }
     if (validateEmail(email)) {
-      alert("이메일 형식이 올바릅니다.");
+      console.log("이메일 형식이 올바릅니다.");
       await fetch("/api/emails", fetchData).then(async (response) => {
-        if (Response.status >= 200 && Response.status < 300) {
+        console.log("email data sending....");
+        if (response.status >= 200 && response.status < 300) {
           slide("next");
           return response.json();
         } else {
@@ -48,7 +49,7 @@
         }
       });
     } else {
-      alert("이메일 형식이 올바르지 않습니다.");
+      console.log("이메일 형식이 올바르지 않습니다.");
     }
   };
 
@@ -63,9 +64,9 @@
       },
       body: JSON.stringify(requestData)
     }
-
     await fetch(`/api/emails`, fetchData).then(async (response) => {
-      if (Response.status >= 200 && Response.status < 300) {
+      console.log("code data sending...");
+      if (response.status >= 200 && response.status < 300) {
         console.log(`인증완료`);
         slide("next");
         return response.json();
