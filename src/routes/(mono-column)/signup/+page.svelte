@@ -37,7 +37,7 @@
     }
     if (validateEmail(email)) {
       alert("이메일 형식이 올바릅니다.");
-      await fetch("https://dev.q-box.site/api/emails", fetchData).then(async (response) => {
+      await fetch("/api/emails", fetchData).then(async (response) => {
         if (Response.status >= 200 && Response.status < 300) {
           slide("next");
           return response.json();
@@ -64,7 +64,7 @@
       body: JSON.stringify(requestData)
     }
 
-    await fetch(import.meta.env.VITE_API_URL + `/emails`, fetchData).then(async (response) => {
+    await fetch(`/api/emails`, fetchData).then(async (response) => {
       if (Response.status >= 200 && Response.status < 300) {
         console.log(`인증완료`);
         slide("next");
