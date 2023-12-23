@@ -33,9 +33,6 @@
       await fetch("https://dev.q-box.site/api/emails", {
         method: "post",
         body: JSON.stringify(requestData),
-        header: {
-          "Content-Type": "application/json;charset=UTF-8",
-        },
       }).then(async (response) => {
         if (Response.status >= 200 && Response.status < 300) {
 
@@ -58,12 +55,9 @@
     const requestData = {
       key: code,
     };
-    await fetch("https://dev.q-box.site/api/emails", {
+    await fetch( import.meta.env.VITE_API_URL + `/emails`, {
         method: "post",
         body: JSON.stringify(requestData),
-        header: {
-          "Content-Type": "application/json",
-        },
       }).then(async (response) => {
         if (Response.status >= 200 && Response.status < 300) {
           console.log(`인증완료`);
