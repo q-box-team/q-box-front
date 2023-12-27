@@ -2,58 +2,40 @@
   import Textfield from "@smui/textfield";
   import Button, { Label } from "@smui/button";
   import Select, { Option } from "@smui/select";
-  import Icon from "@smui/select/icon";
-  const authFunction = (data) => {
-    // sendSignUpData(data);
-    console.log(`완료`);
-  };
-  export let step;
-  $: console.log(step);
-  let email;
-  let password;
-  let nickname;
-  let school;
-  let departId;
-  let schools = ["한국공학대학교", "인하대학교", "중앙대학교", "아주대학교"];
+  export let signInForm;
+  export let email;
+
   let departures = [
-    "경영학과",
-    "컴퓨터공학과",
+    1,
+    2,
   ];
+  email = "";
+  let userData = ["","","1"];
+  $: console.log(userData);
+  $: console.log(email);
 
-  // 전체 input이 제대로 작성되어있는지 예외처리 기능
-  // 인증완료 버튼 클릭시 sendRequest
-  const sendSignUpData = (data) => {
-    const csrfToken =
-      "vGWy1mnjnc-w-Qn8fQeBe5qY_A4Mi1yXYW-mVA_ipp2XzZs-jgbR5F2B_66dwTjMHyq1Tfmg0Tc7vji6VQvDMmnTn6-nrvkM";
-
-    const requestData = {
-      email,
-      password,
-      nickname,
-      departId,
-    };
-
-    axios({
-      method: "post",
-      url: "signup",
-      data: requestData,
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken,
-      },
-    }).then(() => goto("/login", { replaceState: true }));
-  };
 </script>
 
 <div class="side-image flex-child_center">
   <h4 class="c_wt fnt-wg_600">회원가입</h4>
 </div>
 <div class="contents-wrap flex-child_center">
-  <div style="width: 100%; flex: 0.85; padding-top: 30px;">
+  <div style="width: 100%; flex:0.835; padding-top: 30px;">
+    <div class="flex-child_center">
+      <Textfield
+        id="email"
+        disabled
+        bind:value={email}
+        label="이메일"
+        class="shaped-outlined wd_360 hg_60"
+        variant="outlined"
+        style="margin-bottom: 30px;"
+      />
+    </div>
     <div class="flex-child_center">
       <Textfield
         id="nickname"
-        value=""
+        bind:value={userData[0]}
         label="닉네임"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
@@ -63,38 +45,18 @@
     <div class="flex-child_center">
       <Textfield
         id="password"
-        value=""
+        bind:value={userData[1]}
         label="비밀번호"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
         style="margin-bottom: 30px;"
       />
     </div>
-    <!-- <div class="flex-child_center">
-      <Textfield
-        id="school"
-        value=""
-        label="소속학교"
-        class="shaped-outlined wd_360 hg_60"
-        variant="outlined"
-        style="margin-bottom: 30px;"
-      />
-    </div> -->
-    <!-- <div class="flex-child_center">
-      <Textfield
-        id="departId"
-        value=""
-        label="학과"
-        class="shaped-outlined wd_360 hg_60"
-        variant="outlined"
-        style="margin-bottom: 30px;"
-      />
-    </div> -->
     <div class="flex-child_center f_column">
       <Select
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
-        bind:value={departId}
+        bind:value={userData[2]}
         label="학과"
       >
         {#each departures as departure}
@@ -109,12 +71,12 @@
   <div style="flex:0.15">
     <Button
       color="primary"
-      on:click={authFunction}
+      on:click={() => {signInForm([email, ...userData])}}
       class="wd_200 bd-rd_28 hg_60"
       style="margin-top: 1vh;"
       variant="raised"
     >
-      <Label class="fnt-sz_20 fnt-wg_600">인증완료</Label>
+      <Label class="fnt-sz_20 fnt-wg_600">인증 완료</Label>
     </Button>
   </div>
 

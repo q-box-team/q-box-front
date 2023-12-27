@@ -3,10 +3,7 @@
   import Button, { Label } from "@smui/button";
   export let emailAuth;
   let email = "";
-  // export let slide;
-  // 이메일 형식이 맞는지 확인하는 기능
-  // 인증하기 버튼 클릭시 데이터를 요청하고 다음으로 넘어가는 기능
-  // 이메일 체크
+  $: email;
 </script>
 
 <div class="side-image flex-child_center">
