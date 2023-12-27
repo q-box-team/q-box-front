@@ -69,7 +69,7 @@
     }
     if (validateSixDigitNumber(code)) {
       console.log("코드 형식이 올바릅니다.");
-      await fetch(`/api/emails`, fetchData).then(async (response) => {
+      await fetch(`/api/emails/key`, fetchData).then(async (response) => {
         console.log("code data sending...");
         if (response.status >= 200 && response.status < 300) {
           console.log(`인증완료`);
