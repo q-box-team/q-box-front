@@ -25,7 +25,6 @@
   };
 
   const emailAuth = async (email) => {
-    console.log(typeof email);
     const requestData = {
       "email": email,
     };
@@ -57,7 +56,6 @@
   };
 
   const authCodeVerification = async (code) => {
-    console.log(typeof code);
     const requestData = {
       "key": code,
     };
@@ -90,10 +88,10 @@
 
   const signInForm = async (data) => {
     const requestData = {
-      email: data[0],
-      nickname: data[1],
-      password: data[2],
-      departId: data[3],
+      "email": data[0],
+      "nickname": data[1],
+      "password": data[2],
+      "departId": data[3],
     };
     const fetchData = {
       method: 'post',
