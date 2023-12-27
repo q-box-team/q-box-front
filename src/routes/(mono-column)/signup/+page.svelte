@@ -25,8 +25,9 @@
   };
 
   const emailAuth = async (email) => {
+    console.log(email);
     const requestData = {
-      email: email,
+      "email": email,
     };
     const fetchData = {
       method: "post",
@@ -58,11 +59,15 @@
 
   const authCodeVerification = async (code) => {
     const requestData = {
-      key: code,
+      "key": code,
     };
     const fetchData = {
       method: 'post',
-      body: JSON.stringify(requestData)
+      body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+        'charset': 'UTF-8'
+      },
     }
     if (validateSixDigitNumber(code)) {
       slide("next");
