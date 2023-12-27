@@ -25,7 +25,7 @@
   };
 
   const emailAuth = async (email) => {
-    console.log(email);
+    console.log(typeof email);
     const requestData = {
       "email": email,
     };
@@ -39,7 +39,6 @@
     };
     if (validateEmail(email)) {
       userEmail = email;
-      slide("next");
       console.log("이메일 형식이 올바릅니다.");
       await fetch("/api/emails" , fetchData).then(async (response) => {
         console.log("email data sending....");
@@ -58,6 +57,7 @@
   };
 
   const authCodeVerification = async (code) => {
+    console.log(typeof code);
     const requestData = {
       "key": code,
     };
@@ -70,7 +70,6 @@
       },
     }
     if (validateSixDigitNumber(code)) {
-      slide("next");
       console.log("코드 형식이 올바릅니다.");
       await fetch(`/api/emails`, fetchData).then(async (response) => {
         console.log("code data sending...");
