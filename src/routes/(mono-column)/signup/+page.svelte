@@ -31,12 +31,16 @@
     const fetchData = {
       method: "post",
       body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+        'charset': 'UTF-8'
+      },
     };
     if (validateEmail(email)) {
       userEmail = email;
       slide("next");
       console.log("이메일 형식이 올바릅니다.");
-      await fetch("/api/emails", fetchData).then(async (response) => {
+      await fetch("/api/emails" , fetchData).then(async (response) => {
         console.log("email data sending....");
         if (response.status >= 200 && response.status < 300) {
           slide("next");
@@ -90,6 +94,10 @@
     const fetchData = {
       method: 'post',
       body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+        'charset': 'UTF-8'
+      },
     }
     await fetch(`/api/members`, fetchData).then(async (response) => {
       console.log(`signIn data sending...`);
