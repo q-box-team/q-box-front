@@ -8,7 +8,7 @@
   export let emailAuth;
   export let authCodeVerification;
   export let serviceAgree;
-  export let signInForm;
+  export let signUpForm;
   export let backStep;
 </script>
 
@@ -21,7 +21,7 @@
       {:else if step === "servAgree"}
         <Content3 {serviceAgree} />
       {:else if step === "signIn"}
-        <Content4 {signInForm} bind:email={email} />
+        <Content4 {signUpForm} bind:email={email} />
       {/if}
     </div>
   </div>

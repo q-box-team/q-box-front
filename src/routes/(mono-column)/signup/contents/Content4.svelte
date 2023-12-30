@@ -2,18 +2,12 @@
   import Textfield from "@smui/textfield";
   import Button, { Label } from "@smui/button";
   import Select, { Option } from "@smui/select";
-  export let signInForm;
+  export let signUpForm;
   export let email;
 
-  let departures = [
-    1,
-    2,
-  ];
+  let departures = [1, 2, 3, 4, 5];
   email = "";
-  let userData = ["","","1"];
-  $: console.log(userData);
-  $: console.log(email);
-
+  let userData = ["", "", "1"];
 </script>
 
 <div class="side-image flex-child_center">
@@ -71,7 +65,9 @@
   <div style="flex:0.15">
     <Button
       color="primary"
-      on:click={() => {signInForm([email, ...userData])}}
+      on:click={() => {
+        signUpForm([email, ...userData]);
+      }}
       class="wd_200 bd-rd_28 hg_60"
       style="margin-top: 1vh;"
       variant="raised"

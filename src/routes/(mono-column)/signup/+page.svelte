@@ -86,33 +86,37 @@
     }
   };
 
-  const signInForm = async (data) => {
-    const requestData = {
-      "email": data[0],
-      "nickname": data[1],
-      "password": data[2],
-      "departId": data[3],
-    };
-    const fetchData = {
-      method: 'post',
-      body: JSON.stringify(requestData),
-      headers: {
-        'Content-Type': 'application/json',
-        'charset': 'UTF-8'
-      },
-    }
-    await fetch(`/api/members`, fetchData).then(async (response) => {
-      console.log(`signIn data sending...`);
-      if (response.status >= 200 && response.status < 300) {
-        console.log(`회원가입 완료`);
-        goto("/login", { replaceState: true });
-        return response.json();
-      } else {
-        const errData = response.json();
-        console.log(errData);
-        throw new Error("Something went wrong!");
+  const signUpForm = async (data) => {
+    if (data[0].split("").indexOf(" ") === -1 && data[1].split("").indexOf(" ") === -1 && data[2].split("").indexOf(" ") === -1 && typeof data[3] === 'number') {
+      const requestData = {
+        "email": data[0],
+        "nickname": data[1],
+        "password": data[2],
+        "departId": data[3],
+      };
+      const fetchData = {
+        method: 'post',
+        body: JSON.stringify(requestData),
+        headers: {
+          'Content-Type': 'application/json',
+          'charset': 'UTF-8'
+        },
       }
-    })
+      await fetch(`/api/members`, fetchData).then(async (response) => {
+        console.log(`signUp data sending...`);
+        if (response.status >= 200 && response.status < 300) {
+          console.log(`회원가입 완료`);
+          goto("/login", { replaceState: true });
+          return response.json();
+        } else {
+          const errData = response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      })
+    } else {
+      alert("회원가입 형식이 올바르지 않습니다. 다시 작성해주세요.");
+    }
   };
 
   const serviceAgree = () => {
@@ -156,7 +160,7 @@
         {:else if step === "servAgree"}
           <Card {step} {serviceAgree} />
         {:else}
-          <Card {step} {signInForm} bind:email={userEmail} />
+          <Card {step} {signUpForm} bind:email={userEmail} />
         {/if}
       {/each}
     </div>
