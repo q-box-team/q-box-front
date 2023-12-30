@@ -4,8 +4,9 @@
   import Button, { Label } from "@smui/button";
   export let email;
   export let password;
-  export let gotoLogin;
   export let gotoSignUp;
+  export let signInForm;
+  $: console.log(email, password);
 </script>
 
 <div class="page-container-wrap flex-child_center">
@@ -39,7 +40,7 @@
       </div>
       <Button
         color="primary"
-        on:click={gotoLogin}
+        on:click={signInForm(email, password)}
         class="wd_360 bd-rd_28 hg_60"
         style="margin-top: 1vh;"
         variant="raised"

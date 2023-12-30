@@ -1,36 +1,47 @@
 <script>
-    import '../../../global.css';
-    // import Checkbox from "@smui/checkbox";
-    // import Textfield from "@smui/textfield";
-    // import Button, {Label} from "@smui/button";
-    import Card from './Card.svelte';
-    import axios from "axios";
-    import {goto} from "$app/navigation";
-    let email = "";
-    let password = "";
+  import "../../../global.css";
+  import Card from "./Card.svelte";
+  import { goto } from "$app/navigation";
+  let email = "";
+  let password = "";
 
-    const sendData = () => {
-        const requestData = {
-            email,
-            password
-        };
-
-        axios({
-            method: "post",
-            url: "login",
-            data: requestData,
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }).then(() => goto("/", {replaceState: true}));
+  const signInForm = async (email, password) => {
+    if (
+      email.split("").indexOf(" ") === -1 &&
+      password.split("").indexOf(" ") === -1
+    ) {
+      const requestData = {
+        email: email,
+        password: password,
+      };
+      const fetchData = {
+        method: "post",
+        body: JSON.stringify(requestData),
+        headers: {
+          "Content-Type": "application/json",
+          charset: "UTF-8",
+        },
+      };
+      await fetch(`/api/login`, fetchData).then(async (response) => {
+        console.log(`signIn data sending...`);
+        if (response.status >= 200 && response.status < 300) {
+          console.log(`로그인 완료`);
+          goto("/main");
+          return response.json();
+        } else {
+          const errData = response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      });
+    } else {
+      alert("로그인 형식이 올바르지 않습니다. 다시 작성해주세요.");
     }
+  };
 
-    const gotoSignUp = () => {
-        goto("/signup");
-    }
-    const gotoLogin = () => {
-        goto("/main");
-    };
+  const gotoSignUp = () => {
+    goto("/signup");
+  };
 </script>
 
-<Card email={email} password={password} gotoLogin={gotoLogin} gotoSignUp={gotoSignUp}/>
+<Card {email} {password} {signInForm} {gotoSignUp} />
