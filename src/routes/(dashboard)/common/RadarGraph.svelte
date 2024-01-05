@@ -27,7 +27,6 @@
       d[name] = +d[name];
     });
   });
-  $: console.log(data);
 </script>
 
 <div

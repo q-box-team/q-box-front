@@ -6,7 +6,6 @@
   export let password;
   export let gotoSignUp;
   export let signInForm;
-  $: console.log(email, password);
 </script>
 
 <div class="page-container-wrap flex-child_center">

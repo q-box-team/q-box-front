@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation";
   import Button, { Label } from "@smui/button";
   import IconButton, { Icon } from '@smui/icon-button';
   import { mdiAccountCircle } from '@mdi/js';
@@ -25,6 +26,7 @@
           class="wd_200 bd-rd_28 hg_50"
           style="margin-top: 1vh;"
           variant="raised"
+          on:click={() => { goto("/question"); }}
         >
           <Label class="fnt-sz_20 fnt-wg_600">질문하기</Label>
         </Button>

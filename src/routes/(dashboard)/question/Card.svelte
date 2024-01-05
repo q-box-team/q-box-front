@@ -1,9 +1,7 @@
 <script>
   import Textfield from "@smui/textfield";
   import Button, { Label } from "@smui/button";
-  export let value;
-  export let data;
-  $: console.log(data);
+  let value = "제목을 입력해주세요.";
   export let sendData;
 </script>
 
@@ -19,7 +17,7 @@
       <Textfield
         inputProps={{ style: { fontSize: "100px" } }}
         style="width: 100%; padding-left: 10px; padding-right: 250px;"
-        bind:value />
+        bind:value={value} />
     </div>
     <div
       style="position: relative; right: 450px; top: 12.5px; display: flex; gap: 20px;"
@@ -27,7 +25,8 @@
       <Button
         color="primary"
         on:click={() => {
-          console.log("되돌아가기 event");
+          localStorage.removeItem('vditorvditor-container');
+          window.history.back();
         }}
         class="wd_200 bd-rd_28 hg_50"
         style="margin-top: 1vh;"
@@ -36,7 +35,7 @@
       </Button>
       <Button
         color="primary"
-        on:click={sendData}
+        on:click={() => {sendData(value)}}
         class="wd_200 bd-rd_28 hg_50"
         style="margin-top: 1vh;"
         variant="raised"

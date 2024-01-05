@@ -38,7 +38,6 @@
     };
     if (validateEmail(email)) {
       userEmail = email;
-      console.log("이메일 형식이 올바릅니다.");
       await fetch("/api/emails" , fetchData).then(async (response) => {
         console.log("email data sending....");
         if (response.status >= 200 && response.status < 300) {
@@ -68,11 +67,9 @@
       },
     }
     if (validateSixDigitNumber(code)) {
-      console.log("코드 형식이 올바릅니다.");
       await fetch(`/api/emails/key`, fetchData).then(async (response) => {
         console.log("code data sending...");
         if (response.status >= 200 && response.status < 300) {
-          console.log(`인증완료`);
           slide("next");
           return response.json();
         } else {
@@ -105,7 +102,6 @@
       await fetch(`/api/members`, fetchData).then(async (response) => {
         console.log(`signUp data sending...`);
         if (response.status >= 200 && response.status < 300) {
-          console.log(`회원가입 완료`);
           goto("/login", { replaceState: true });
           return response.json();
         } else {
@@ -120,7 +116,6 @@
   };
 
   const serviceAgree = () => {
-    console.log(`인증하기`);
     slide("next");
   };
 
@@ -166,8 +161,8 @@
     </div>
   </div>
 </div>
-<button on:click={() => slide("prev")} disabled={prevDisabled}>이전</button>
-<button on:click={() => slide("next")} disabled={nextDisabled}>다음</button>
+<!-- <button on:click={() => slide("prev")} disabled={prevDisabled}>이전</button>
+<button on:click={() => slide("next")} disabled={nextDisabled}>다음</button> -->
 
 <style>
   .signup-container {

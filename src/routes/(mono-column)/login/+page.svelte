@@ -25,7 +25,7 @@
       await fetch(`/api/login`, fetchData).then(async (response) => {
         console.log(`signIn data sending...`);
         if (response.status >= 200 && response.status < 300) {
-          console.log(`로그인 완료`);
+          sessionStorage.setItem("q-box", JSON.stringify(response));
           goto("/main");
           return response.json();
         } else {
