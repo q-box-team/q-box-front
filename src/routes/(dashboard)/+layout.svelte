@@ -1,4 +1,5 @@
 <script>
+    import SubjectModal from "./common/SubjectModal.svelte";
     import axios from "axios";
     import SideBar from "./SideBar.svelte";
     import Header from "./Header.svelte";
@@ -12,4 +13,6 @@
         <Header/>
         <slot></slot>
     </div>
+    <SubjectModal />
+
 </div>
