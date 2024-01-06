@@ -10,15 +10,14 @@
       email.split("").indexOf(" ") === -1 &&
       password.split("").indexOf(" ") === -1
     ) {
-      const requestData = {
-        "email": email,
-        "password": password,
-      };
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
       const fetchData = {
         method: "post",
-        body: JSON.stringify(requestData),
+        body: formData,
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           charset: "UTF-8",
         },
       };
