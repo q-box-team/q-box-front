@@ -11,8 +11,8 @@
       password.split("").indexOf(" ") === -1
     ) {
       const requestData = {
-        email: email,
-        password: password,
+        "email": email,
+        "password": password,
       };
       const fetchData = {
         method: "post",
