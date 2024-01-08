@@ -25,6 +25,7 @@
         console.log(`signIn data sending...`);
         if (response.status >= 200 && response.status < 300) {
           sessionStorage.setItem("q-box", JSON.stringify(response));
+          console.log(response);
           goto("/main");
           return response.json();
         } else {
