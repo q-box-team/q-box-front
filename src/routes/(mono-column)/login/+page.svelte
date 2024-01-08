@@ -13,17 +13,13 @@
       const formData = new FormData();
       formData.append('email', email);
       formData.append('password', password);
-      const requestData = {
-        "email": email,
-        "password": password
-      };
       const fetchData = {
         method: "post",
-        body: JSON.stringify(requestData),
-        headers: {
-          'Content-Type': 'application/json',
-          charset: "UTF-8",
-        },
+        body: formData,
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        //   charset: "UTF-8",
+        // },
       };
       await fetch(`/api/login`, fetchData).then(async (response) => {
         console.log(`signIn data sending...`);
