@@ -1,7 +1,6 @@
 <script>
   import isModal from "./modal-store";
   import { onMount } from "svelte";
-
   let modalHandler;
   isModal.subscribe((bool) => {
     modalHandler = bool;
@@ -19,13 +18,45 @@
     hideModal();
   };
 
+  const subjects = [];
+
+  const subjectsList = async () => {
+    userEmail = email;
+    await fetch(`/api/letctures`).then(async (response) => {
+      console.log("subject data receiving....");
+      if (response.status >= 200 && response.status < 300) {
+        console.log(response);
+        return response.json();
+      } else {
+        const errData = await response.json();
+        console.log(errData);
+        throw new Error("Something went wrong!");
+      }
+    });
+  };
+
+  onMount( async () => {
+    await fetch(`/api/lectures`).then(async (response) => {
+      console.log(`first subject data receiving...`);
+      if (response.status >= 200 && response.status < 300) {
+        console.log(response);
+        return response.json();
+      } else {
+        const errData = await response.json();
+        console.log(errData);
+        throw new Error("Something went wrong!");
+      }
+    })
+  });
 </script>
 
 {#if modalHandler}
   <div on:click={modalBackgroundHandler} class="modal-background">
     <div class="modal">
-      <!-- 모달 내용 -->
-      <p>모달 내용</p>
+      {#each subjects as subject}
+        {subject}
+        <br />
+      {/each}
       <button on:click={hideModal}>닫기</button>
     </div>
   </div>

@@ -1,7 +1,6 @@
 <script>
   import isModal from "./common/modal-store";
   const modalHandler = () => {
-    console.log(`button click`);
     isModal.set(true);
   };
   import "../../global.css";
