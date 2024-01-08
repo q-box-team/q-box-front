@@ -1,5 +1,4 @@
 <script>
-  import axios from "axios";
   import "../../../global.css";
   import Card from "./Card.svelte";
   import { goto } from "$app/navigation";
@@ -7,20 +6,37 @@
   let password = "";
 
   const signInForm = async (email, password) => {
-    console.log(email, password);
     if (
       email.split("").indexOf(" ") === -1 &&
       password.split("").indexOf(" ") === -1
     ) {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
       const requestData = {
-            email,
-            password
-        };
-        axios({
-            method: "post",
-            url: "login",
-            data: requestData
-        }).then(() => goto("/signup/main"));
+        "email": email,
+        "password": password
+      };
+      const fetchData = {
+        method: "post",
+        body: JSON.stringify(requestData),
+        headers: {
+          'Content-Type': 'application/json',
+          charset: "UTF-8",
+        },
+      };
+      await fetch(`/api/login`, fetchData).then(async (response) => {
+        console.log(`signIn data sending...`);
+        if (response.status >= 200 && response.status < 300) {
+          sessionStorage.setItem("q-box", JSON.stringify(response));
+          goto("/main");
+          return response.json();
+        } else {
+          const errData = response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      });
     } else {
       alert("로그인 형식이 올바르지 않습니다. 다시 작성해주세요.");
     }
