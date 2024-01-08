@@ -16,16 +16,11 @@
       const fetchData = {
         method: "post",
         body: formData,
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        //   charset: "UTF-8",
-        // },
       };
       await fetch(`/api/login`, fetchData).then(async (response) => {
         console.log(`signIn data sending...`);
         if (response.status >= 200 && response.status < 300) {
-          sessionStorage.setItem("q-box", JSON.stringify(response));
-          console.log(response);
+          sessionStorage.setItem("q-box", JSON.stringify(response.body));
           goto("/main");
           return response.json();
         } else {
