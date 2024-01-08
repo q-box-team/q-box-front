@@ -18,7 +18,7 @@
         };
         axios({
             method: "post",
-            url: "/api/login",
+            url: "login",
             data: requestData
         }).then(() => goto("/signup/main"));
     } else {
