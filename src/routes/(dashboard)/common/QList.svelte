@@ -42,6 +42,12 @@
       detail: "13942번 문제에서 자꾸 StackSizeExceed가 나와요",
       thumbUp: 1,
     },
+    {
+      img: "https://avatars.githubusercontent.com/u/15474343?v=4",
+      nickname: "별빛의 여인",
+      detail: "13942번 문제에서 자꾸 StackSizeExceed가 나와요",
+      thumbUp: 1,
+    },
   ];
 </script>
 
@@ -56,7 +62,7 @@
     <div class="fnt-sz_25 blink_disable"><b>Question</b></div>
     <a
       class="blink_disable"
-      href="#"
+      href="/questionlist"
       style="color: black; text-decoration: underline; cursor: pointer;"
       >더보기</a
     >

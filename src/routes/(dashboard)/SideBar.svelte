@@ -1,4 +1,8 @@
 <script>
+  import isModal from "./common/modal-store";
+  const modalHandler = () => {
+    isModal.set(true);
+  };
   import "../../global.css";
   let createdDeparts = [
     "웹서비스프로그래밍",
@@ -7,7 +11,6 @@
     "인간과현대사회",
     "알고리즘",
   ];
-  let ifNotCreated = [];
 </script>
 
 <div class="flex-child_j-start_a-start f_column bg-c_pri blink_disable" style="height: 100vh; flex: 0.15;">
@@ -16,7 +19,7 @@
     {#each createdDeparts as depart}
       <div class="subject hg_65 flex-child_j-start_a-center c_wt fnt-sz_20" style="padding-left: 30px;"><span><b>{depart}</b></span></div>
     {/each}
-    <div class="subject-add_button hg_65 flex-child_center" role="button">
+    <div class="subject-add_button hg_65 flex-child_center" role="button" style="cursor: pointer;" tabindex="0" on:click={modalHandler} >
       <div class="wd_40 hg_40 bd-rd_50 bg-c_sf flex-child_center">
         <div class="material-icons wd_30 hg_30" style="position: relative; top: 3px; left: 3px; color: #6A76Cb;">add</div>
       </div>

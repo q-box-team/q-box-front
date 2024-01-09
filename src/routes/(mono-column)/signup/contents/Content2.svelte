@@ -1,14 +1,11 @@
 <script>
     import Textfield from "@smui/textfield";
     import Button, { Label } from "@smui/button";
-    export let step;
-    export let slide;
-    const authComplete = () => {
-      console.log(`인증완료`);
-      slide("next");
-
-    };
-    $:console.log(step);
+    export let authCodeVerification;
+    export let email;
+    export let backStep;
+    $: email;
+    let code = "";
     // 인증코드 감별 기능
     // 감별 완료시, 다음으로 넘어갈 수 있는 기능
     // 인증코드 다시 받기 위한 sendRequest
@@ -49,14 +46,14 @@
     <div class="flex-child_center" style="flex:0.13">
       <span class="c_pri fnt-wg_600 fnt-sz_20 s-pd_20"
       style="text-align: center;"
-        >xxxxxxxxx@gmail.com 으로 <br/>회원가입 이메일 인증코드를 전달하였습니다.<br/>
-        5분 이내에 이메일에 있는 인증코드를 입력해주세요.</span
+        >등록하신 {email} 이메일로 <br/>회원가입 이메일 인증코드를 전달하였습니다.<br/>
+        이메일에 있는 인증코드를 입력해주세요.</span
       >
     </div>
     <div style="flex:0.10"></div>
     <div class="flex-child_center" style="flex:0.13">
       <Textfield
-        value=""
+        bind:value={code}
         label="6-digit code"
         class="shaped-outlined wd_360 hg_60"
         variant="outlined"
@@ -66,7 +63,7 @@
     <div style="flex:0.18">
       <Button
         color="primary"
-        on:click={authComplete}
+        on:click={authCodeVerification(code)}
         class="wd_200 bd-rd_28 hg_60"
         style="margin-top: 1vh;"
         variant="raised"
@@ -76,7 +73,7 @@
     </div>
     <div class="flex-child_j-center_a-start f_row" style="flex:0.18; gap: 10px">
       <span>이메일을 받지 못하셨나요?</span>
-      <a href="#">다시 받기</a>
+      <a href="#" on:click={backStep} >다시 받기</a>
     </div>
     <!-- <div style="flex:0.06"></div> -->
   </div>

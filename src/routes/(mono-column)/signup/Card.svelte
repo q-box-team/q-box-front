@@ -4,19 +4,24 @@
   import Content3 from "./contents/Content3.svelte";
   import Content4 from "./contents/Content4.svelte";
   export let step;
-  export let slide;
+  export let email;
+  export let emailAuth;
+  export let authCodeVerification;
+  export let serviceAgree;
+  export let signUpForm;
+  export let backStep;
 </script>
 
   <div class="flex-child_center">
     <div class="signup-container flex-child_j-start_a-center">
       {#if step === "emailAuth"}
-        <Content1 step={step} slide={slide}/>
+        <Content1 emailAuth={emailAuth}/>
       {:else if step === "authComplete"}
-        <Content2 step={step} slide={slide}/>
-      {:else if step === "serAgree"}
-        <Content3 step={step} slide={slide}/>
+        <Content2 {authCodeVerification} bind:email={email} {backStep} />
+      {:else if step === "servAgree"}
+        <Content3 {serviceAgree} />
       {:else if step === "signIn"}
-        <Content4 step={step} slide={slide}/>
+        <Content4 {signUpForm} bind:email={email} />
       {/if}
     </div>
   </div>

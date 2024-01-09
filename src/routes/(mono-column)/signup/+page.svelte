@@ -1,16 +1,16 @@
 <script>
-  import "../../../global.css";
+  import { goto } from "$app/navigation";
   import Card from "./Card.svelte";
-  const process = ["emailAuth", "authComplete", "serAgree", "signIn"];
-
+  const process = ["emailAuth", "authComplete", "servAgree", "signIn"];
   let slider;
+  let userEmail;
   let currentSlidePosition = 0;
   $: nextDisabled = slider
     ? currentSlidePosition >= slider.scrollWidth - slider.clientWidth
     : false;
   $: prevDisabled = currentSlidePosition <= 0;
 
-  function slide(direction) {
+  const slide = (direction) => {
     const moveAmount = slider.clientWidth * 1;
     if (
       direction === "next" &&
@@ -20,24 +20,149 @@
     } else if (direction === "prev" && currentSlidePosition > 0) {
       currentSlidePosition -= moveAmount;
     }
-    const centerPosition = slider.clientWidth * currentSlidePosition / 600;
+    const centerPosition = (slider.clientWidth * currentSlidePosition) / 600;
     slider.scrollTo({ left: centerPosition, behavior: "smooth" });
-  }
+  };
 
-  $: console.log(`currentSlidePosition: `, currentSlidePosition);
+  const emailAuth = async (email) => {
+    const requestData = {
+      "email": email,
+    };
+    const fetchData = {
+      method: "post",
+      body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+        'charset': 'UTF-8'
+      },
+    };
+    if (validateEmail(email)) {
+      userEmail = email;
+      await fetch("/api/emails" , fetchData).then(async (response) => {
+        console.log("email data sending....");
+        if (response.status >= 200 && response.status < 300) {
+          slide("next");
+          return response.json();
+        } else {
+          const errData = await response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      });
+    } else {
+      alert("이메일 형식이 올바르지 않습니다. 다시 입력해주세요.");
+    }
+  };
+
+  const authCodeVerification = async (code) => {
+    const requestData = {
+      "key": code,
+    };
+    const fetchData = {
+      method: 'post',
+      body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+        'charset': 'UTF-8'
+      },
+    }
+    if (validateSixDigitNumber(code)) {
+      await fetch(`/api/emails/key`, fetchData).then(async (response) => {
+        console.log("code data sending...");
+        if (response.status >= 200 && response.status < 300) {
+          slide("next");
+          return response.json();
+        } else {
+          const errData = response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      });
+    } else {
+      alert("코드 형식이 올바르지 않습니다. 다시 입력해주세요.");
+    }
+  };
+
+  const signUpForm = async (data) => {
+    if (data[0].split("").indexOf(" ") === -1 && data[1].split("").indexOf(" ") === -1 && data[2].split("").indexOf(" ") === -1 && typeof data[3] === 'number') {
+      const requestData = {
+        "email": data[0],
+        "nickname": data[1],
+        "password": data[2],
+        "departId": data[3],
+      };
+      const fetchData = {
+        method: 'post',
+        body: JSON.stringify(requestData),
+        headers: {
+          'Content-Type': 'application/json',
+          'charset': 'UTF-8'
+        },
+      }
+      await fetch(`/api/members`, fetchData).then(async (response) => {
+        console.log(`signUp data sending...`);
+        if (response.status >= 200 && response.status < 300) {
+          goto("/login", { replaceState: true });
+          return response.json();
+        } else {
+          const errData = response.json();
+          console.log(errData);
+          throw new Error("Something went wrong!");
+        }
+      })
+    } else {
+      alert("회원가입 형식이 올바르지 않습니다. 다시 작성해주세요.");
+    }
+  };
+
+  const serviceAgree = () => {
+    slide("next");
+  };
+
+  const backStep = () => {
+    slide("prev");
+  };
+
+  // 이메일 체크
+  const validateEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  function validateSixDigitNumber(num) {
+    const re = /^[a-z0-9]{8}$/i;
+    return re.test(String(num));
+  };
 </script>
 
 <div class="page-container-wrap flex-child_center">
   <div class="flex-child_center shadow">
-    <div class="signup-container flex-child_j-start_a-center" bind:this={slider}>
+    <div
+      class="signup-container flex-child_j-start_a-center"
+      bind:this={slider}
+    >
       {#each process as step}
-        <Card {step} slide={slide} />
+        {#if step === "emailAuth"}
+          <Card {step} {emailAuth} />
+        {:else if step === "authComplete"}
+          <Card
+            {step}
+            {authCodeVerification}
+            bind:email={userEmail}
+            {backStep}
+          />
+        {:else if step === "servAgree"}
+          <Card {step} {serviceAgree} />
+        {:else}
+          <Card {step} {signUpForm} bind:email={userEmail} />
+        {/if}
       {/each}
     </div>
   </div>
 </div>
-<button on:click={() => slide("prev")} disabled={prevDisabled}>이전</button>
-<button on:click={() => slide("next")} disabled={nextDisabled}>다음</button>
+<!-- <button on:click={() => slide("prev")} disabled={prevDisabled}>이전</button>
+<button on:click={() => slide("next")} disabled={nextDisabled}>다음</button> -->
 
 <style>
   .signup-container {
@@ -51,6 +176,8 @@
     height: 684px;
     border-radius: 35px;
     overflow: hidden;
-    box-shadow: 0px 15px 30px #929292, 0px -15px 30px #ffffff;
+    box-shadow:
+      0px 15px 30px #929292,
+      0px -15px 30px #ffffff;
   }
 </style>
