@@ -1,5 +1,5 @@
 <script>
-    import userInfo from '../../store/user-store';
+  import userInfo from "../../store/user-store";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import SubjectModal from "./common/SubjectModal.svelte";
@@ -11,7 +11,7 @@
   axios.defaults.withCredentials = true;
 
   let user;
-  userInfo.subscribe(info => {
+  userInfo.subscribe((info) => {
     // user = info;
     console.log(info);
   });
@@ -20,34 +20,26 @@
   let jSessionIDIndex = -1;
 
   onMount(() => {
-    cookieString = document.cookie;
-    jSessionIDIndex = cookieString.indexOf("JSESSIONID");
-    if (jSessionIDIndex !== -1) {
-      axios
-        .get("/members/me")
-        .then((res) => {
-            userInfo.set({
-                user: {
-                    email: res.data.email,
-                    nickname: res.data.nickname,
-                    depart: {
-                        id: res.data.depart.id,
-                        name: res.data.depart.name,
-                        univId: res.data.depart.univId,
-                    }
-                }
-            });
-        })
-        .catch((e) => {
-          console.log(`catch`);
-          alert("잘못된 접근입니다. 다시 로그인 해주세요.");
-          goto("/login");
+    axios
+      .get("/members/me")
+      .then((res) => {
+        userInfo.set({
+          user: {
+            email: res.data.email,
+            nickname: res.data.nickname,
+            depart: {
+              id: res.data.depart.id,
+              name: res.data.depart.name,
+              univId: res.data.depart.univId,
+            },
+          },
         });
-    } else {
-      console.log(`jSession Index unavailable or not able to find`);
-      alert("잘못된 접근입니다. 다시 로그인 해주세요.");
-      goto("/login");
-    }
+      })
+      .catch((e) => {
+        console.log(`catch`);
+        alert("잘못된 접근입니다. 다시 로그인 해주세요.");
+        goto("/login");
+      });
   });
 </script>
 
