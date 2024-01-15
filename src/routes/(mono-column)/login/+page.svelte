@@ -22,7 +22,7 @@
         if (response.status >= 200 && response.status < 300) {
           sessionStorage.setItem("q-box", JSON.stringify(response.body));
           goto("/main");
-          return response.json();
+          return;
         } else {
           const errData = response.json();
           console.log(errData);
