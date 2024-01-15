@@ -32,8 +32,8 @@
       />
       <div class="option flex-child_j-between_a-center wd_350">
         <div class="flex-child_center" style="flex-direction: row; ">
-          <Checkbox />
-          <span>로그인 유지</span>
+          <!-- <Checkbox /> -->
+          <!-- <span>로그인 유지</span> -->
         </div>
         <a href="#">비밀번호를 잊으셨나요?</a>
       </div>
