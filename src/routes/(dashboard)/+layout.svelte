@@ -21,7 +21,7 @@
 
   onMount(() => {
     cookieString = document.cookie;
-    jSessionIDIndex = cookieString.indexOf("JSESSIONID=");
+    jSessionIDIndex = cookieString.indexOf("JSESSIONID");
     if (jSessionIDIndex !== -1) {
       axios
         .get("/members/me")
@@ -39,10 +39,12 @@
             });
         })
         .catch((e) => {
+          console.log(`catch`);
           alert("잘못된 접근입니다. 다시 로그인 해주세요.");
           goto("/login");
         });
     } else {
+      console.log(`jSession Index unavailable or not able to find`);
       alert("잘못된 접근입니다. 다시 로그인 해주세요.");
       goto("/login");
     }
