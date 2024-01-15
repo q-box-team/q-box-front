@@ -16,28 +16,30 @@
     console.log(info);
   });
 
-  let cookieString;
-  let jSessionIDIndex = -1;
-
   onMount(() => {
-    axios
-      .get("/members/me")
-      .then((res) => {
+    fetch("/members/me")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("잘못된 접근입니다. 다시 로그인 해주세요.");
+        }
+        return response.json();
+      })
+      .then((data) => {
         userInfo.set({
           user: {
-            email: res.data.email,
-            nickname: res.data.nickname,
+            email: data.email,
+            nickname: data.nickname,
             depart: {
-              id: res.data.depart.id,
-              name: res.data.depart.name,
-              univId: res.data.depart.univId,
+              id: data.depart.id,
+              name: data.depart.name,
+              univId: data.depart.univId,
             },
           },
         });
       })
-      .catch((e) => {
-        console.log(`catch`);
-        alert("잘못된 접근입니다. 다시 로그인 해주세요.");
+      .catch((error) => {
+        console.error("catch:", error.message);
+        alert(error.message);
         goto("/login");
       });
   });
