@@ -4,6 +4,9 @@
   let modalHandler;
   isModal.subscribe((bool) => {
     modalHandler = bool;
+    if (modalHandler === true) {
+      subjectsList();
+    }
   });
 
   const showModal = () => {
@@ -22,7 +25,7 @@
 
   const subjectsList = async () => {
     userEmail = email;
-    await fetch(`/api/letctures`).then(async (response) => {
+    await fetch(`/api/letctures?depart=${1}&page=${0}&size=${5}`).then(async (response) => {
       console.log("subject data receiving....");
       if (response.status >= 200 && response.status < 300) {
         console.log(response);
@@ -35,19 +38,7 @@
     });
   };
 
-  onMount( async () => {
-    await fetch(`/api/lectures`).then(async (response) => {
-      console.log(`first subject data receiving...`);
-      if (response.status >= 200 && response.status < 300) {
-        console.log(response);
-        return response.json();
-      } else {
-        const errData = await response.json();
-        console.log(errData);
-        throw new Error("Something went wrong!");
-      }
-    })
-  });
+
 </script>
 
 {#if modalHandler}
