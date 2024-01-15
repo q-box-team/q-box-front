@@ -25,6 +25,7 @@
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         userInfo.set({
           user: {
             email: data.email,
