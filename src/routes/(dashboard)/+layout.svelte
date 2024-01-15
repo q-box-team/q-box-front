@@ -17,7 +17,7 @@
   });
 
   onMount(() => {
-    fetch("/members/me")
+    fetch("/api/members/me")
       .then((response) => {
         if (!response.ok) {
           throw new Error("잘못된 접근입니다. 다시 로그인 해주세요.");
